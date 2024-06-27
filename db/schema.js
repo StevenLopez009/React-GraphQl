@@ -80,8 +80,8 @@ export const typeDefs = gql`
 
   input PedidoInput{
     pedido:[PedidoProductoInput]
-    total:Float!
-    cliente:ID!
+    total:Float
+    cliente:ID
     estado:EstadoPedido
   }
 
@@ -100,11 +100,12 @@ export const typeDefs = gql`
   #Clientes
     obtenerClientes:[Cliente]
     obtenerClientesVendedor:[Cliente]
-    obtenerCliente(id:ID):Cliente
+    obtenerCliente(id:ID!):Cliente
   #Pedidos
     obtenerPedidos:[Pedido]
     obtenerPedidosVendedor:[Pedido]
     obtenerPedido(id:ID!):Pedido
+    obtenerPedidosEstado(estado:String!):[Pedido]
   }
 
   type Mutation{
@@ -121,5 +122,7 @@ export const typeDefs = gql`
     eliminarCliente(id:ID!):String
   #Pedidos
     nuevoPedido(input:PedidoInput):Pedido
+    actualizarPedido(id:ID!,input:PedidoInput):Pedido
+    eliminarPedido(id:ID!):String
   }
 `;
